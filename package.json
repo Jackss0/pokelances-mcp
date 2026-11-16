@@ -1,0 +1,40 @@
+{
+  "name": "pokelances-mcp",
+  "version": "0.1.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "agent": "node dist/agent.js",
+    "sync-catalog": "node dist/cli/sync-catalog.js",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/server.js",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "description": "MCP server and Claude agent that turn a seller's description of Pokémon TCG cards into listing drafts for the PokeLances marketplace.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.9.0",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "type": "module",
+  "bin": {
+    "pokelances-mcp": "dist/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "agent",
+    "pokemon-tcg"
+  ]
+}
