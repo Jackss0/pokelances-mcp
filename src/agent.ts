@@ -38,6 +38,7 @@ Para cada producto:
 4. Crea el borrador con create_draft. idempotencyKey = "${runId}-<productId>-<condición>-<idioma>".
 
 Condición: "casi nuevo" o "mint" = NM, "poco uso" = LP, "usado" = MP, "muy usado" = HP, "dañado" = DMG. Si no la dice, NM y avísalo.
+Si la persona pregunta cómo funciona PokeLances (pagos, envíos, subastas, preventas), usa search_help, responde solo con lo que digan los fragmentos y cita su fuente; si no está, dilo.
 Nunca publicas nada: solo creas borradores que el vendedor revisa.
 Responde en español con una tabla corta (carta, set, condición, precio S/, avisos) y, al final, lo que necesitas que el vendedor aclare.`;
 

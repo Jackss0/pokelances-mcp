@@ -4,21 +4,25 @@ import type { Config } from "./config.js";
 import { DraftStore } from "./drafts.js";
 import { CONDITIONS, suggestPrice } from "./pricing.js";
 import { Store } from "./store.js";
+import { HelpIndex, loadKnowledge, localEmbedder } from "./rag/help.js";
 
 export interface Deps {
   catalog: () => Catalog; // lazy: the server starts even before the catalog is synced
   store: Store;
   drafts: DraftStore;
   usdToPen: number;
+  help: () => HelpIndex; // lazy: the embedding model loads on the first question
 }
 
 export function createDeps(config: Config): Deps {
   let catalog: Catalog | undefined;
+  let help: HelpIndex | undefined;
   return {
     catalog: () => (catalog ??= Catalog.load(config.catalogPath)),
     store: new Store(config.storeUrl),
     drafts: new DraftStore(config.draftsPath),
     usdToPen: config.usdToPen,
+    help: () => (help ??= new HelpIndex(loadKnowledge(config.knowledgeDir), localEmbedder())),
   };
 }
 
@@ -175,6 +179,24 @@ export function buildTools(d: Deps): ToolDef[] {
           warnings,
         });
         return { created, draft };
+      },
+    },
+    {
+      name: "search_help",
+      title: "Search the PokeLances help docs",
+      description:
+        "Search PokeLances' help docs (payments, shipping, ways to buy, products, stores) for passages that answer a buyer's or seller's question. " +
+        "Answer ONLY with what the passages say and cite each one by its source. " +
+        "Each passage has its cosine similarity to the question; passages are always returned, so check that they actually answer it. " +
+        "If they don't, say you don't have that information instead of guessing.",
+      input: {
+        question: z.string().min(3).describe("The user's question, in their own words"),
+        k: z.number().int().min(1).max(5).optional().describe("Passages to return, default 3"),
+      },
+      readOnly: true,
+      run: async (a) => {
+        const hits = await d.help().search(a.question, a.k ?? 3);
+        return { passages: hits.map((h) => ({ source: h.source, title: `${h.doc} > ${h.section}`, text: h.text, similarity: h.similarity })) };
       },
     },
     {

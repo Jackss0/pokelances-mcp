@@ -51,9 +51,9 @@ const call = async (name: string, args: Record<string, unknown> = {}) => {
   return { isError: r.isError ?? false, text: r.content[0].text, json: () => JSON.parse(r.content[0].text) };
 };
 
-test("exposes the five tools with descriptions", async () => {
+test("exposes the six tools with descriptions", async () => {
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["create_draft", "list_drafts", "search_cards", "search_store", "suggest_price"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["create_draft", "list_drafts", "search_cards", "search_help", "search_store", "suggest_price"]);
   assert.ok(tools.every((t) => (t.description ?? "").length > 40));
   assert.equal(tools.find((t) => t.name === "search_cards")?.annotations?.readOnlyHint, true);
 });

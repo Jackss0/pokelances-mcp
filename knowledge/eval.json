@@ -1,0 +1,29 @@
+{
+  "note": "Retrieval eval: each question has the section that answers it. Questions are paraphrased on purpose (no copy of the doc wording). outOfScope questions have no answer in the docs: the agent must say it doesn't know.",
+  "questions": [
+    { "q": "¿Llegan pedidos a Arequipa?", "expected": "envios.md#envios-a-todo-el-peru" },
+    { "q": "¿Con qué courier mandan los paquetes?", "expected": "envios.md#envios-a-todo-el-peru" },
+    { "q": "Ya pagué por Yape, ¿por qué no se confirma al instante?", "expected": "pagos.md#pagar-con-yape-o-plin" },
+    { "q": "¿Cobran algo extra si pago con Visa?", "expected": "pagos.md#pagar-con-tarjeta" },
+    { "q": "¿Qué formas de pago aceptan?", "expected": "pagos.md#metodos-de-pago" },
+    { "q": "¿Puedo pasar a recoger mi compra en persona?", "expected": "envios.md#recojo-en-tienda" },
+    { "q": "¿Dónde veo el tracking de mi paquete?", "expected": "envios.md#seguimiento-del-pedido" },
+    { "q": "Ya me llegó el paquete, ¿tengo que hacer algo en la web?", "expected": "envios.md#confirmar-que-recibiste-tu-pedido" },
+    { "q": "¿Cómo funciona pujar mientras están transmitiendo?", "expected": "como-comprar.md#subastas-en-vivo" },
+    { "q": "Gané tres lotes en el mismo live, ¿tengo que pagar tres veces?", "expected": "como-comprar.md#subastas-en-vivo" },
+    { "q": "¿Hasta qué momento puedo pujar en una subasta que termina a una hora fija?", "expected": "como-comprar.md#subastas-programadas" },
+    { "q": "¿Puedo proponerle a la tienda un precio más bajo?", "expected": "como-comprar.md#ofertas-y-contraofertas" },
+    { "q": "¿Qué es La Última Energía?", "expected": "como-comprar.md#dinamicas-en-vivo" },
+    { "q": "¿Venden cartas de One Piece?", "expected": "productos.md#que-se-vende" },
+    { "q": "¿Las cartas vienen en japonés o en inglés?", "expected": "productos.md#idioma-de-las-cartas" },
+    { "q": "¿Qué significa LP en una carta?", "expected": "productos.md#condicion-de-las-cartas" },
+    { "q": "¿Puedo apartar una caja que todavía no ha salido?", "expected": "productos.md#preventas" },
+    { "q": "Tengo una tienda de cartas, ¿puedo vender en la plataforma?", "expected": "tiendas.md#vender-en-pokelances" },
+    { "q": "Compré a dos tiendas en el mismo carrito, ¿cómo se confirma el pago?", "expected": "pagos.md#compras-a-varias-tiendas" },
+    { "q": "¿Se puede comprar a precio fijo sin entrar a una subasta?", "expected": "como-comprar.md#marketplace" }
+  ],
+  "outOfScope": [
+    "¿Aceptan devoluciones si la carta llega dañada?",
+    "¿Cuánto cuesta el envío a Cusco?"
+  ]
+}

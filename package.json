@@ -9,12 +9,14 @@
     "sync-catalog": "node dist/cli/sync-catalog.js",
     "inspect": "npx @modelcontextprotocol/inspector node dist/server.js",
     "test": "node --import tsx --test tests/*.test.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "eval": "node dist/cli/eval.js"
   },
   "license": "MIT",
   "description": "MCP server and Claude agent that turn a seller's description of Pokémon TCG cards into listing drafts for the PokeLances marketplace.",
   "dependencies": {
     "@anthropic-ai/sdk": "^1.9.0",
+    "@huggingface/transformers": "^4.3.2",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "zod": "^4.6.7"
   },
